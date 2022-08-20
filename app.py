@@ -3,13 +3,15 @@ from connect_azure import AzureBlob
 import os
 
 app = Flask(__name__)
+
+
 ab = AzureBlob()
 container_client = ab.auth_connection_string()
 
 
 @app.route("/")
 def index():
-    return "<h1> Welcome to Flask Application </h1>"
+    return "<h1>Welcome to Flask Application</h1>"
 
 
 @app.route("/foldername")
@@ -55,4 +57,4 @@ def val_append(dct, key, value):
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True, host="0.0.0.0", port=5000)
