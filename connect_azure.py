@@ -16,8 +16,3 @@ class AzureBlob:
             connect_str, container_name="gangadharcontainer"
         )
         return container_client
-
-
-if __name__ == "__main__":
-    ab = AzureBlob()
-    ab.auth_connection_string()
