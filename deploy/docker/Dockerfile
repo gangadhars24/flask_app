@@ -33,7 +33,9 @@ FROM debian:buster as run
 COPY --from=build /venv /venv
 COPY --from=build /app.py .
 COPY --from=build /connect_azure.py .
-ENV AZURE_STORAGE_CONNECTION_STRING=DefaultEndpointsProtocol=https;AccountName=gangadharstorageaccount;AccountKey=nrzyZOjZmczt1nIZ4cuoIIM74zCS5z12tVw6Rk79TLGMzyCgP3ou8IHmTdw0eZr7Sk8dCj6NM7EC+ASt1JF5ew==;EndpointSuffix=core.windows.net
+
+# Enable below line with valid access key
+# ENV AZURE_STORAGE_CONNECTION_STRING=<Storage_Account_Access_key>
 
 SHELL ["/bin/bash", "-c"]
 
