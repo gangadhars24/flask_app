@@ -5,7 +5,19 @@ from connect_azure import AzureBlob
 import os
 import pandas as pd
 import numpy as np
+import logging
 
+os.makedirs("logs", exist_ok=True)
+# Create and configure logger
+logging.basicConfig(
+    filename="logs/logs.log", format="%(asctime)s %(message)s", filemode="w"
+)
+
+# Creating an object
+logger = logging.getLogger()
+logger.propagate = False
+# Setting the threshold of logger to DEBUG
+logger.setLevel(logging.DEBUG)
 
 app = Flask(__name__)
 
@@ -62,6 +74,9 @@ def predict():
     lin_rmse = np.sqrt(lin_mse)
 
     lin_mae = mean_absolute_error(test_label, prediction)
+    logger.info("Test data : {}".format(test_data))
+    logger.info("Test label : {}".format(test_label))
+    logger.info("Predictions : {}".format(prediction))
     return jsonify(
         {"RMSE": lin_rmse, "MAE": lin_mae, "prediction": list(prediction)}
     )
