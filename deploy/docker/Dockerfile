@@ -35,8 +35,10 @@ COPY --from=build /app.py .
 COPY --from=build /connect_azure.py .
 
 # Enable below line with valid access key
-# ENV AZURE_STORAGE_CONNECTION_STRING=<Storage_Account_Access_key>
+ENV AZURE_STORAGE_CONNECTION_STRING="DefaultEndpointsProtocol=https;AccountName=gangadharstorageaccount;AccountKey=nrzyZOjZmczt1nIZ4cuoIIM74zCS5z12tVw6Rk79TLGMzyCgP3ou8IHmTdw0eZr7Sk8dCj6NM7EC+ASt1JF5ew==;EndpointSuffix=core.windows.net"
+ENV FLASK_DEBUG=1
 
 SHELL ["/bin/bash", "-c"]
 
-ENTRYPOINT source /venv/bin/activate && python app.py
+ENTRYPOINT source /venv/bin/activate && gunicorn --timeout 1000 --workers 1 --threads 4 --log-level debug --bind 0.0.0.0:5000 app:app
+# ENTRYPOINT source /venv/bin/activate && python app.py
