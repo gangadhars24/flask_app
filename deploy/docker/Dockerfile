@@ -35,7 +35,8 @@ COPY --from=build /app.py .
 COPY --from=build /connect_azure.py .
 
 # Enable below line with valid access key
-ENV AZURE_STORAGE_CONNECTION_STRING="<Storage_account_connection_string>"ENV FLASK_DEBUG=1
+ENV AZURE_STORAGE_CONNECTION_STRING="<Storage_account_connection_string>"
+ENV FLASK_DEBUG=1
 
 SHELL ["/bin/bash", "-c"]
 
