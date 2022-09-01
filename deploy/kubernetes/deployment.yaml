@@ -3,8 +3,7 @@ kind: Deployment
 metadata:
   name: flaskapp-deployment
   labels:
-    tier: backend
-    app: flaskapp
+    type: restapi
 spec:
   selector:
     matchLabels:
@@ -12,10 +11,13 @@ spec:
   replicas: 3
   template:
     metadata:
-      name: flaskapp
+      name: flaskapp-tmpl
       labels:
         app: flaskapp
     spec:
       containers:
-        - name: flaskapp_cont
+        - name: flaskapp-cont
           image: gangadharcontainerregistry.azurecr.io/azure_flask_app:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000
