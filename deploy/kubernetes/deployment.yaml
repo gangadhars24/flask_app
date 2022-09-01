@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flaskapp-deployment
+  labels:
+    tier: backend
+    app: flaskapp
+spec:
+  selector:
+    matchLabels:
+      app: flaskapp
+  replicas: 3
+  template:
+    metadata:
+      name: flaskapp
+      labels:
+        app: flaskapp
+    spec:
+      containers:
+        - name: flaskapp_cont
+          image: gangadharcontainerregistry.azurecr.io/azure_flask_app:v1
