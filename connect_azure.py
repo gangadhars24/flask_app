@@ -16,3 +16,23 @@ class AzureBlob:
             connect_str, container_name="gangadharcontainer"
         )
         return container_client
+
+
+"""
+from urllib.parse import urlparse
+from azure.storage.blob import BlobServiceClient
+import os
+modelpath = os.getenv("MODELPATH")
+blobkey = os.getenv("BLOB_KEY")
+uri = urlparse(modelpath)
+account_url = uri.scheme + "://" + uri.netloc
+container_path = uri.path.lstrip("/").split("/")
+container = container_path.pop(0)
+path = "/".join(container_path)
+
+client = BlobServiceClient(account_url=account_url,credential=blobkey)
+
+blob = client.get_blob_client(container=container, blob=path)
+download_stream = blob.download_blob()
+model = download_stream.readall()
+"""
