@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: flaskapp-cont
-          image: gangadharcontainerregistry.azurecr.io/azure_flask_app:v1
+          image: azure_flask_app1
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5000
